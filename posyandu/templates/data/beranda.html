@@ -1,17 +1,17 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 <div class="content-body">
-  <div class="container-fluid mt-3">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-lg-3 col-sm-6">
         <div class="card gradient-1">
           <div class="card-body">
-            <h3 class="card-title text-white">Anak</h3>
+            <h3 class="card-title text-white">Admin</h3>
             <div class="d-inline-block">
-              <h1 class="text-white">{{ siswa }}</h1>
+              <h1 class="text-white">{{ petugas }}</h1>
               <p class="text-white mb-0"></p>
             </div>
             <span class="float-right display-5 opacity-5"
-              ><i class="fa fa-users"></i
+              ><i class="fa fa-user"></i
             ></span>
           </div>
         </div>
@@ -30,16 +30,17 @@
           </div>
         </div>
       </div>
+
       <div class="col-lg-3 col-sm-6">
         <div class="card gradient-3">
           <div class="card-body">
-            <h3 class="card-title text-white">Admin</h3>
+            <h3 class="card-title text-white">Anak</h3>
             <div class="d-inline-block">
-              <h1 class="text-white">{{ petugas }}</h1>
+              <h1 class="text-white">{{ siswa }}</h1>
               <p class="text-white mb-0"></p>
             </div>
             <span class="float-right display-5 opacity-5"
-              ><i class="fa fa-user"></i
+              ><i class="fa fa-users"></i
             ></span>
           </div>
         </div>
@@ -103,7 +104,6 @@
       data: ["{{ komputers }}"],
       color: "#ffbb00",
     },
-  
   ];
 
   $.plot("#flotPie1", piedata, {

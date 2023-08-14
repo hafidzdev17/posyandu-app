@@ -9,5 +9,5 @@ class PembayaranResource(resources.ModelResource):
 
     class Meta:
         model = Anak
-        fields = ['nama', 'ttl', 'jenis_kelamin','berat_badan','tinggi_badan', 'tanggal_operasi', 'indikator', 'tanggal_pembayaran','status','posyandu']
+        fields = ['nama', 'ttl', 'jenis_kelamin','berat_badan','tinggi_badan', 'tanggal_operasi', 'indikator','status','posyandu']
 

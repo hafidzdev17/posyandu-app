@@ -61,7 +61,6 @@ def beranda(request):
     total_siswa = Anak.objects.count()
     total_kelas = Kelas.objects.count()
     total_petugas = Petugas.objects.count()
-    total_pembayaran = Pembayaran.objects.count()
   
     context = {
         'menu' : 'Beranda',
@@ -73,7 +72,6 @@ def beranda(request):
         'siswa' : total_siswa,
         'kelas' : total_kelas,
         'petugas' : total_petugas,
-        'pembayaran' : total_pembayaran,
     }
     return render(request, 'data/beranda.html', context)
 
