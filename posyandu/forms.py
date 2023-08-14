@@ -60,28 +60,3 @@ class PetugasForm(ModelForm):
             'no_telpon' : 'Nomer telepon',
         }
 
-class PembayaranForm(forms.ModelForm):
-  
-    
-    class Meta:
-        model = Pembayaran
-        fields = '__all__'
-    
-        widgets = {
-            'nama': autocomplete.ModelSelect2(url='autocomplete'),
-            'pembayaran': forms.TextInput(attrs={'class': 'form-select'}),
-            'kategori': forms.Select(attrs={'class': 'form-select'}),
-            'tanggal': forms.DateInput(format='%m-%d-%Y', attrs={'type': 'date'}),
-            'biaya': forms.TextInput(attrs={'class': 'form-control'}),
-            'tahun': forms.TextInput(attrs={'class': 'form-select'}),
-            'keterangan': forms.Select(attrs={'class': 'form-select'}),
-        }
-        labels = {
-            'nama': 'Nama Siswa',
-            'pembayaran': 'Pembayaran',
-            'kategori': 'Kategori Pembayaran',
-            'tanggal': 'Tanggal Pembayaran',
-            'biaya': 'Biaya',
-            'tahun': 'Tahun',
-            'keterangan': 'Keterangan',
-        }

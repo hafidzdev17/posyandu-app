@@ -13,7 +13,7 @@ class SiswaFilter(django_filters.FilterSet):
     nama = CharFilter(field_name="nama", lookup_expr='icontains')
 
     class Meta:
-        model = Siswa
+        model = Anak
         fields = ['nama']
 
 class PembayaranFilter(django_filters.FilterSet):
