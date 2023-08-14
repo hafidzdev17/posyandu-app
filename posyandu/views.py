@@ -277,6 +277,7 @@ def delete_petugas(request, pk):
     }
     return render(request, 'data/petugas_delete.html', context)
 
+@login_required
 
 def laporan(request):
     pembayaran = Anak.objects.order_by('-id')

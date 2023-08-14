@@ -2,19 +2,21 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-success">
   <div class="container">
-    <span class="brand-title">
-      <img
-        src="{% static 'public/images/logo.png' %}"
-        width="50px"
-        height="50px"
-        href="{% url 'beranda' %}"
-        alt=""
-      />
-    </span>
-    <div class="col-4 text-center">
-      <h5 class="text-dark">
-        Sistem Informasi Stunting <br />Kelurahan Candigati Jember
-      </h5>
+    <div class="col-5 text-center">
+      <div class="d-flex flex-row">
+        <span class="brand-title">
+          <img
+            src="{% static 'public/images/logo.png' %}"
+            width="50px"
+            height="50px"
+            href="{% url 'beranda' %}"
+            alt=""
+          />
+        </span>
+        <h5 class="text-dark ml-4 mt-2">
+          Sistem Informasi Stunting <br />Kelurahan Candigati Jember
+        </h5>
+      </div>
     </div>
     <div class="col-7">
       <button
@@ -90,6 +92,34 @@
                 <span class="nav-text">Laporan</span>
               </a>
             </h5>
+          </li>
+
+          <li>
+            <div
+              class="user-img c-pointer position-relative ml-2"
+              data-toggle="dropdown"
+            >
+              <span class="activity active"></span>
+              <img
+                src="{% static 'public/images/user/1.png' %}"
+                height="40"
+                width="40"
+                alt=""
+              />
+            </div>
+            <div
+              class="drop-down dropdown-profile animated fadeIn dropdown-menu ml-5"
+            >
+              <div class="dropdown-content-body">
+                <ul>
+                  <li>
+                    <a href="{% url 'logout' %}"
+                      ><i class="icon-key"></i> <span>Logout</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
