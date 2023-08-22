@@ -11,7 +11,7 @@
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="{% static 'public/assets/images/favicon.png' %}"
+      href="{% static 'public/images/logo.png' %}"
     />
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
     <link href="{% static 'public/css/style.css' %}" rel="stylesheet" />
@@ -58,12 +58,14 @@
                     data-toggle="dropdown"
                   >
                     <span class="activity active"></span>
+                   <a href="{% url 'index' %}">
                     <img
-                      src="{% static 'public/images/logo.png' %}"
-                      height="150"
-                      width="150"
-                      alt=""
-                    />
+                    src="{% static 'public/images/logo.png' %}"
+                    height="150"
+                    width="150"
+                    alt=""
+                  />
+                   </a>
                   </div>
                   <br />
                   <a class="text-center" href="#"><h4>LOGIN Posyandu</h4> </a>

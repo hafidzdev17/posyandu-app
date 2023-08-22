@@ -28,18 +28,6 @@ class SiswaAutocomplete(autocomplete.Select2QuerySetView):
 
         return qs
 
-def getfoto(request):
-    santri = Santri.objects.get(id=request.GET.get('pk'))
-    foto = santri.foto.name
-    return HttpResponse(foto)
-
-def telegram_bot(chat_id, message):
-    # https://api.telegram.org/bot1837414090:AAEd-MMi0Z_NYxkHdNsQTbMNyhndwQCJycY/getUpdates
-    bot_token = '1837414090:AAH5AB4hR_oX1xbDMsPs7F5N0RsimoLkFCY'
-    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + chat_id + '&parse_mode=HTML&text=' + message
-    response = requests.get(send_text)
-    return response.json()
-
 # @ijinkan_pengguna(yang_diizinkan=['admin']) 
 # @login_required(login_url='login')
 def export_xls(request):
@@ -49,6 +37,34 @@ def export_xls(request):
     response['Content-Disposition'] = 'attachment; filename=pelangaran.xls'
     return response
 
+# views halaman depan
+def index(request):
+    context = {
+        'menu' : 'index',
+        'page' : 'Sistem Informasi Stunting Kelurahan Candigati Jember',
+    }
+    return render(request, 'frontend/index.html', context)
+
+def about(request):
+    context = {
+        'menu' : 'about',
+        'page' : 'Posyandu Kelurahan Candigati Jember | Tentang',
+    }
+    return render(request, 'frontend/about.html', context)
+
+def posyandu(request):
+    context = {
+        'menu' : 'posyandu',
+        'page' : 'Posyandu Kelurahan Candigati Jember | Posyandu',
+    }
+    return render(request, 'frontend/posyandu.html', context)
+
+def contact(request):
+    context = {
+        'menu' : 'contact',
+        'page' : 'Posyandu Kelurahan Candigati Jember | Contact',
+    }
+    return render(request, 'frontend/contact.html', context)
 
 @login_required
 def beranda(request):
@@ -104,7 +120,7 @@ def logoutPage(request):
 
 # views kelas
 @login_required
-def kelas(request):
+def posyandus(request):
     kelas_data = Kelas.objects.all()
     context = {
         'menu' : 'Form Posyandu',
@@ -112,10 +128,10 @@ def kelas(request):
         'kelas' : kelas_data,
         'filter_kelas' : KelasFilter
     }
-    return render(request, 'data/kelas.html', context)
+    return render(request, 'data/posyandu.html', context)
 
 @login_required
-def create_kelas(request):
+def create_posyandu(request):
     form = KelasForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
@@ -126,10 +142,10 @@ def create_kelas(request):
         'page' : 'Halaman Tambah Posyandu',
         'form': form
     }
-    return render(request, 'data/kelas_form.html', context)
+    return render(request, 'data/posyandu_form.html', context)
 
 @login_required
-def update_kelas(request, pk):
+def update_posyandu(request, pk):
     kelas = Kelas.objects.get(id=pk)
     form = KelasForm(request.POST or None, request.FILES or None, instance=kelas)
     if form.is_valid():
@@ -141,26 +157,26 @@ def update_kelas(request, pk):
         'page' : 'Halaman Edit Posyandu',
         'form': form
     }
-    return render(request, 'data/kelas_form.html', context)
+    return render(request, 'data/posyandu_form.html', context)
 
 @login_required
-def delete_kelas(request, pk):
+def delete_posyandu(request, pk):
     kelas = Kelas.objects.get(id=pk)
     if request.method == 'POST':
         kelas.delete()
-        messages.success(request, 'Kelas berhasil dihapus.')
+        messages.success(request, 'Posyandu berhasil dihapus.')
         return redirect('kelas')
     context = {
         'menu':'Menu Delete Kelas',
         'page':'Halaman Delete Kelas',
         'kelas': kelas
     }
-    return render(request, 'data/kelas_delete.html', context)
+    return render(request, 'data/posyandu_delete.html', context)
 
 
 # views siswa
 @login_required
-def siswa(request):
+def anak(request):
     siswa_data = Anak.objects.order_by('-id')
     context = {
         'menu' : 'Form Anak',
@@ -168,51 +184,51 @@ def siswa(request):
         'siswa' : siswa_data,
         'filter_siswa' : SiswaFilter
     }
-    return render(request, 'data/siswa.html', context)
+    return render(request, 'data/anak.html', context)
 
 @login_required
-def create_siswa(request):
+def create_anak(request):
     form = AnakForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
         messages.success(request, 'Anak Berhasil Ditambahkan.')
-        return redirect('siswa')
+        return redirect('anak')
     context = {
         'menu' : 'Tambah Anak',
         'page' : 'Halaman Tambah Anak',
         'form': form
     }
-    return render(request, 'data/siswa_form.html', context)
+    return render(request, 'data/anak_form.html', context)
 
 
 @login_required
-def update_siswa(request, pk):
-    siswa = Anak.objects.get(id=pk)
-    form = AnakForm(request.POST or None, request.FILES or None, instance=siswa)
+def update_anak(request, pk):
+    anak = Anak.objects.get(id=pk)
+    form = AnakForm(request.POST or None, request.FILES or None, instance=anak)
     if form.is_valid():
         form.save()
         messages.success(request, 'Anak berhasil diupdate.')
-        return redirect('siswa')
+        return redirect('anak')
     context = {
         'menu' : 'Edit Anak',
         'page' : 'Halaman Edit Anak',
         'form': form
     }
-    return render(request, 'data/siswa_form.html', context)
+    return render(request, 'data/anak_form.html', context)
 
 @login_required
-def delete_siswa(request, pk):
-    siswa = Anak.objects.get(id=pk)
+def delete_anak(request, pk):
+    anak = Anak.objects.get(id=pk)
     if request.method == 'POST':
-        siswa.delete()
+        anak.delete()
         messages.success(request, 'Anak berhasil dihapus.')
-        return redirect('siswa')
+        return redirect('anak')
     context = {
         'menu':'Menu Delete Anak',
         'page':'Halaman Delete Anak',
-        'siswa': siswa
+        'siswa': anak
     }
-    return render(request, 'data/siswa_delete.html', context)
+    return render(request, 'data/anak_delete.html', context)
 
 @login_required
 # petugas

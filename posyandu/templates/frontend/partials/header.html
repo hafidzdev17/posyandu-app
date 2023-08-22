@@ -1,0 +1,83 @@
+{% load static %}
+
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div class="logo">
+      <h1 class="text-white">
+        <a href="{% url 'index' %}"
+          ><img
+            src="{% static 'public/images/logo.png' %}"
+            alt="Lambang Kabupaten Pesawaran"
+          /><span> Candigati Jember</span></a
+        >
+      </h1>
+    </div>
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li>
+          <a
+            class="{% if menu == 'index' %} active {% endif %}"
+            href="{% url 'index' %}"
+            >Beranda</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'about' %}"
+            class="{% if menu == 'about' %} active {% endif %}"
+            >Tentang Posyandu</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'posyandu' %}"
+            class="{% if menu == 'posyandu' %} active {% endif %}"
+            >Lembaga Posyandu</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'contact' %}"
+            class="{% if menu == 'contact' %} active {% endif %}"
+            >Kontak</a
+          >
+        </li>
+      </ul>
+
+      {% if request.user.is_authenticated %}
+      <!-- Pengguna sudah login -->
+      <div class="dropdown mx-4">
+        <img
+          src="{% static 'public/images/user/2.png' %}"
+          height="40"
+          width="40"
+          alt="User Profile"
+          class="profile-image dropdown-toggle"
+          id="imageDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        />
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="imageDropdown"
+        >
+          <li>
+            <a class="dropdown-item" href="{% url 'beranda' %}"> Dashboard </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'logout' %}"> Logout </a>
+          </li>
+        </ul>
+      </div>
+
+      {% else %}
+      <!-- Pengguna belum login -->
+      <a href="{% url 'login' %}">
+        <button type="button" class="btn btn-success mr-2 btn-sm">Login</button>
+      </a>
+      {% endif %}
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar --><!-- .navbar -->
+  </div>
+</header>

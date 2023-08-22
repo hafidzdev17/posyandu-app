@@ -15,7 +15,7 @@
             
             <div class="card-title">
               <a
-                href="{% url 'create_siswa'  %}"
+                href="{% url 'create_anak'  %}"
                 type="button"
                 class="float-right btn btn-rounded btn-success text-white fa-fa fa-plus"
               >
@@ -72,12 +72,12 @@
                     <td>
                       <a
                         class="btn btn-info btn-sm my-1"
-                        href="{% url 'update_siswa' siswa.id %}"
+                        href="{% url 'update_anak' siswa.id %}"
                         >Edit</a
                       >
                       <a
                         class="btn btn-danger btn-sm my-1"
-                        href="{% url 'delete_siswa' siswa.id %}"
+                        href="{% url 'delete_anak' siswa.id %}"
                         >Hapus</a
                       >
                     </td>

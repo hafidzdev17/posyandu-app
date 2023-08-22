@@ -1,0 +1,310 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>{{ page }}</title>
+
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'public/images/logo.png' %}"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="{% static 'assets/vendor/animate.css/animate.min.css' %}"
+      rel="stylesheet"
+    />
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+    <link
+      href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    {% include './partials/header.html' %}
+    <!-- End Header -->}
+
+    <main id="main">
+      <!-- ======= About Us Section ======= -->
+      <section class="breadcrumbs">
+        <div class="container">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2>Tentang Posyandu</h2>
+            <ol>
+              <li><a href="{% url 'index' %}">Beranda</a></li>
+              <li>Tentang Posyandu</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+      <!-- End About Us Section -->
+
+      <!-- ======= About Section ======= -->
+      <section class="about" data-aos="fade-up">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <img
+                src="https://imgv2-2-f.scribdassets.com/img/document/538760412/original/f6316df27d/1690957312?v=1"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0">
+              <h3>Struktur Posyandu Candigati Jember</h3>
+              <p class="fst-italic">
+                Ilustrasi di samping menggambarkan struktur organisasi Posyandu
+                Candigati di Jember. Struktur posyandu ini terdiri dari:
+              </p>
+              <ul>
+                <li><i class="bi bi-check2-circle"></i> Ketua Posyandu</li>
+                <li><i class="bi bi-check2-circle"></i> Sekretaris Posyandu</li>
+                <li><i class="bi bi-check2-circle"></i> Bendahara Posyandu</li>
+                <li><i class="bi bi-check2-circle"></i> Kader Posyandu</li>
+                <li>
+                  <i class="bi bi-check2-circle"></i> Koordinator Kesehatan Ibu
+                  dan Anak
+                </li>
+                <li><i class="bi bi-check2-circle"></i> Koordinator Gizi</li>
+                <li>
+                  <i class="bi bi-check2-circle"></i> Koordinator Pertumbuhan
+                </li>
+                <li>
+                  <i class="bi bi-check2-circle"></i> Koordinator Pelayanan
+                  Kesehatan
+                </li>
+                <li>
+                  <i class="bi bi-check2-circle"></i> Koordinator Edukasi
+                  Kesehatan
+                </li>
+                <li>
+                  <i class="bi bi-check2-circle"></i> Koordinator Pemberian
+                  Makanan Tambahan
+                </li>
+                <li>
+                  <i class="bi bi-check2-circle"></i> Koordinator Monitoring dan
+                  Evaluasi
+                </li>
+                <li>
+                  <i class="bi bi-check2-circle"></i> Koordinator Hubungan
+                  Masyarakat
+                </li>
+              </ul>
+
+              <p>
+                Seperti yang terlihat, Posyandu Candigati di Jember dipimpin
+                oleh Ketua Posyandu yang saat ini dijabat oleh Ibu Fitriani.
+                Terdapat pula anggota posyandu lainnya yang berperan penting
+                dalam menjalankan berbagai program dan kegiatan untuk melawan
+                stunting serta meningkatkan kesehatan generasi muda di wilayah
+                tersebut. Kerjasama yang erat dan dedikasi dari seluruh
+                perangkat posyandu menjadi pilar utama dalam mencapai tujuan
+                mulia ini.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End About Section -->
+
+      <!-- ======= Service Details Section ======= -->
+      <section class="service-details py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+              <div class="card">
+                <div class="card-img">
+                  <!-- <img src="assets/img/user.png" alt="..."> -->
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><a href="#">Visi</a></h5>
+                  <p class="card-text">
+                    <center>
+                      Posyandu Candigati Jember: Pusat Pelayanan Kesehatan
+                      Masyarakat Berbasis Partisipatif Menuju Generasi Sehat dan
+                      Berkualitas
+                    </center>
+                  </p>
+                  <p class="card-text">
+                    <b>MEWUJUDKAN GENERASI SEHAT :</b> Mengupayakan peningkatan
+                    kualitas kesehatan masyarakat di Desa Candigati Jember
+                    dengan fokus pada perawatan ibu hamil, balita, dan
+                    anak-anak. Dengan mengoptimalkan pelayanan kesehatan yang
+                    komprehensif dan edukatif, kami bertujuan untuk membentuk
+                    generasi masa depan yang kuat, cerdas, dan sehat secara
+                    fisik maupun mental.
+                  </p>
+                  <p class="card-text">
+                    <b>PARTISIPATIF DAN KOLABORATIF :</b> Mendorong partisipasi
+                    aktif masyarakat, tenaga kesehatan, dan berbagai pihak
+                    terkait dalam proses pembangunan dan pengembangan Posyandu
+                    Candigati Jember. Kami percaya bahwa melalui kolaborasi yang
+                    erat, berbagai inovasi dalam pelayanan kesehatan masyarakat
+                    dapat dihasilkan untuk mengatasi tantangan kesehatan yang
+                    dihadapi oleh desa.
+                  </p>
+                  <p class="card-text">
+                    <b>EDUKASI DAN PENCEGAHAN :</b> Menjadikan Posyandu
+                    Candigati Jember sebagai pusat edukasi kesehatan bagi
+                    masyarakat. Kami akan memberikan informasi yang akurat dan
+                    terkini tentang pentingnya gaya hidup sehat, nutrisi, serta
+                    praktik kesehatan preventif untuk mengurangi risiko penyakit
+                    dan mempromosikan kesejahteraan umum.
+                  </p>
+                  <p class="card-text">
+                    <b>PENINGKATAN INFRASTRUKTUR DAN TEKNOLOGI :</b>
+                    Mengembangkan fasilitas dan teknologi di Posyandu Candigati
+                    Jember guna memberikan layanan kesehatan yang lebih baik dan
+                    lebih efisien. Dengan dukungan infrastruktur yang memadai,
+                    kami dapat memberikan pelayanan medis dasar yang berkualitas
+                    tinggi kepada seluruh masyarakat desa.
+                  </p>
+                  <p class="card-text">
+                    <b>TRANSPARANSI DAN AKUNTABILITAS :</b> Menjunjung tinggi
+                    prinsip transparansi dalam pengelolaan sumber daya,
+                    keuangan, dan pelayanan di Posyandu Candigati Jember. Kami
+                    berkomitmen untuk menjalankan tata kelola yang baik,
+                    memastikan akuntabilitas yang tinggi, dan memberikan
+                    informasi yang jelas kepada masyarakat tentang segala aspek
+                    yang terkait dengan posyandu.
+                  </p>
+                  <p class="card-text">
+                    <b>MELIBATKAN KOMUNITAS :</b> Mendorong partisipasi dan
+                    keterlibatan aktif masyarakat dalam pengambilan keputusan
+                    terkait penyelenggaraan pelayanan di Posyandu Candigati
+                    Jember. Dengan demikian, kami dapat memastikan bahwa
+                    pelayanan yang diberikan benar-benar sesuai dengan kebutuhan
+                    dan harapan masyarakat setempat.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+              <div class="card">
+                <div class="card-img">
+                  <!-- <img src="assets/img/service-details-2.jpg" alt="..."> -->
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><a href="#">Misi</a></h5>
+                  <p class="card-text">
+                    Meningkatkan pelayanan kesehatan masyarakat melalui
+                    pembangunan infrastruktur kesehatan yang partisipatif. Kami
+                    berkomitmen untuk mengembangkan fasilitas kesehatan yang
+                    memadai untuk memberikan pelayanan yang berkualitas bagi
+                    seluruh masyarakat desa.
+                  </p>
+                  <p class="card-text">
+                    Meningkatkan transparansi dan akuntabilitas pemerintahan
+                    dalam penyelenggaraan pelayanan publik. Kami akan
+                    mengoptimalkan tata kelola pemerintahan yang profesional dan
+                    transparan untuk memberikan pelayanan publik yang efektif,
+                    efisien, dan sesuai dengan kebutuhan masyarakat.
+                  </p>
+                  <p class="card-text">
+                    Mendorong pengembangan usaha ekonomi produktif di
+                    masyarakat. Kami akan mendukung perkembangan produk unggulan
+                    desa, membantu pertumbuhan wirausaha baru, serta memberikan
+                    pembinaan kepada kelompok usaha mikro, kecil, dan menengah
+                    (UMKM) agar dapat berkontribusi dalam pertumbuhan ekonomi
+                    desa.
+                  </p>
+                  <p class="card-text">
+                    Meningkatkan kesejahteraan sosial melalui pemenuhan layanan
+                    dan peluang usaha bagi Penyandang Masalah Kesejahteraan
+                    Sosial (PMKS). Kami bertujuan untuk menciptakan masyarakat
+                    yang lebih sejahtera melalui layanan dan dukungan kepada
+                    mereka yang memerlukan.
+                  </p>
+                  <p class="card-text">
+                    Meningkatkan kualitas dan aksesibilitas layanan kesehatan
+                    serta pendidikan anak. Kami akan terus berupaya meningkatkan
+                    kualitas pelayanan kesehatan dan pendidikan anak agar dapat
+                    membentuk generasi yang sehat, cerdas, dan berkualitas.
+                  </p>
+                  <p class="card-text">
+                    Melestarikan nilai-nilai agama, sosial, dan budaya dalam
+                    masyarakat. Kami akan mendukung ketaatan pada nilai-nilai
+                    agama, norma sosial, serta hukum, sambil menjaga dan
+                    memperkaya keanekaragaman budaya dan adat istiadat melalui
+                    pengembangan potensi pemuda di bidang olahraga, seni, dan
+                    budaya.
+                  </p>
+                  <p class="card-text">
+                    Mengembangkan sektor pariwisata, kelautan, perikanan, dan
+                    pertanian dengan memperhatikan partisipasi masyarakat dan
+                    pelaku usaha. Kami akan menggali dan mengembangkan potensi
+                    sumber daya alam di sektor-sektor tersebut guna mendorong
+                    pertumbuhan ekonomi desa dan memberikan manfaat kepada semua
+                    pihak yang terlibat.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Service Details Section -->
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    {% include './partials/footer.html' %}
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/purecounter/purecounter.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  </body>
+</html>

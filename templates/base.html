@@ -48,6 +48,78 @@
 
   <body>
     <div id="main-wrapper">
+
+      <div class="nav-header">
+        <div class="brand-logo">
+          <a href="#">
+            <b class="logo-abbr"
+              ><img
+                src="{% static 'public/images/logo.png' %}"
+                width="80"
+                alt=""
+              />
+            </b>
+            <span class="logo-compact"
+              ><img src="{% static 'public/images/logo.png' %}" alt=""
+            /></span>
+            <span class="brand-title">
+              <img
+                src="{% static 'public/images/logo.png' %}"
+                width="50px"
+                height="50px"
+                href="{% url 'beranda' %}"
+                alt=""
+              />
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="header bg-primary">
+        <div class="header-content clearfix">
+          <div class="nav-control">
+            <div class="hamburger">
+              <span class="toggle-icon"><i class="icon-menu"></i></span>
+            </div>
+          </div>
+          <div class="header-right">
+            <li class="icons d-none d-md-flex">
+              <a class="log-user">
+                <span class="text-white"
+                  >Selamat datang, {{request.user.username }} </span
+                >
+              </a>
+            </li>
+            <li class="icons dropdown">
+              <div
+                class="user-img c-pointer position-relative"
+                data-toggle="dropdown"
+              >
+                <span class="activity active"></span>
+                <img
+                  src="{% static 'public/images/user/2.png' %}"
+                  height="40"
+                  width="40"
+                  alt=""
+                />
+              </div>
+              <div
+                class="drop-down dropdown-profile animated fadeIn dropdown-menu"
+              >
+                <div class="dropdown-content-body">
+                  <ul>
+                    <li>
+                      <a href="{% url 'logout' %}"
+                        ><i class="icon-key"></i> <span>Logout</span></a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </div>
+        </div>
+      </div>
       {% include "navbar.html" %}
 
       <div

@@ -1,128 +1,68 @@
-{% load static %}
-
-<nav class="navbar navbar-expand-lg navbar-light bg-success">
-  <div class="container">
-    <div class="col-5 text-center">
-      <div class="d-flex flex-row">
-        <span class="brand-title">
-          <img
-            src="{% static 'public/images/logo.png' %}"
-            width="50px"
-            height="50px"
+<div class="nk-sidebar">
+  <div class="nk-nav-scroll">
+    <ul class="metismenu" id="menu">
+      <li class="nav-label">List Menu</li>
+      <li>
+        <h5>
+          <a
+            class="nav-link {% if menu == 'beranda' %} active {% endif %}"
             href="{% url 'beranda' %}"
-            alt=""
-          />
-        </span>
-        <h5 class="text-dark ml-4 mt-2">
-          Sistem Informasi Stunting <br />Kelurahan Candigati Jember
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-house-chimney-window"></i>
+            <span class="nav-text">Beranda</span>
+          </a>
         </h5>
-      </div>
-    </div>
-    <div class="col-7">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li>
-            <h5>
-              <a
-                class="nav-link {% if menu == 'beranda' %} active {% endif %}"
-                href="{% url 'beranda' %}"
-                aria-expanded="false"
-              >
-                <i class="fa-solid fa-house-chimney-window"></i>
-                <span class="nav-text">Beranda</span>
-              </a>
-            </h5>
-          </li>
-          <li>
-            <h5>
-              <a
-                class="nav-link {% if menu == 'petugas' %} active {% endif %}"
-                href="{% url 'petugas' %}"
-                aria-expanded="false"
-              >
-                <i class="fa-solid fa-user-tie"></i>
-                <span class="nav-text">Data Admin</span>
-              </a>
-            </h5>
-          </li>
-          <li>
-            <h5>
-              <a
-                class="nav-link {% if menu == 'kelas' %} active {% endif %}"
-                href="{% url 'kelas' %}"
-                aria-expanded="false"
-              >
-                <i class="fa-solid fa-hospital"></i>
-                <span class="nav-text">Data Posyandu</span>
-              </a>
-            </h5>
-          </li>
-          <li>
-            <h5>
-              <a
-                class="nav-link {% if menu == 'siswa' %} active {% endif %}"
-                href="{% url 'siswa' %}"
-                aria-expanded="false"
-              >
-                <i class="fa-solid fa-child"></i>
-                <span class="nav-text">Data Anak</span>
-              </a>
-            </h5>
-          </li>
+      </li>
+      <li>
+        <h5>
+          <a
+            class="nav-link {% if menu == 'petugas' %} active {% endif %}"
+            href="{% url 'petugas' %}"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-user-tie"></i>
+            <span class="nav-text">Data Admin</span>
+          </a>
+        </h5>
+      </li>
+      <li>
+        <h5>
+          <a
+            class="nav-link {% if menu == 'kelas' %} active {% endif %}"
+            href="{% url 'kelas' %}"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-hospital"></i>
+            <span class="nav-text">Data Posyandu</span>
+          </a>
+        </h5>
+      </li>
+      <li>
+        <h5>
+          <a
+            class="nav-link {% if menu == 'anak' %} active {% endif %}"
+            href="{% url 'anak' %}"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-child"></i>
+            <span class="nav-text">Data Anak</span>
+          </a>
+        </h5>
+      </li>
 
-          <li>
-            <h5>
-              <a
-                class="nav-link {% if menu == 'laporan' %} active {% endif %}"
-                href="{% url 'laporan' %}"
-                aria-expanded="false"
-              >
-                <i class="fa-solid fa-book"></i>
-                <span class="nav-text">Laporan</span>
-              </a>
-            </h5>
-          </li>
-
-          <li>
-            <div
-              class="user-img c-pointer position-relative ml-2"
-              data-toggle="dropdown"
-            >
-              <span class="activity active"></span>
-              <img
-                src="{% static 'public/images/user/1.png' %}"
-                height="40"
-                width="40"
-                alt=""
-              />
-            </div>
-            <div
-              class="drop-down dropdown-profile animated fadeIn dropdown-menu ml-5"
-            >
-              <div class="dropdown-content-body">
-                <ul>
-                  <li>
-                    <a href="{% url 'logout' %}"
-                      ><i class="icon-key"></i> <span>Logout</span></a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+      <li>
+        <h5>
+          <a
+            class="nav-link {% if menu == 'laporan' %} active {% endif %}"
+            href="{% url 'laporan' %}"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-book"></i>
+            <span class="nav-text">Laporan</span>
+          </a>
+        </h5>
+      </li>
+    </ul>
   </div>
-</nav>
+</div>

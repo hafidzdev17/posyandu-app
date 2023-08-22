@@ -1,0 +1,174 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>{{ page }}</title>
+
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'public/images/logo.png' %}"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="{% static 'assets/vendor/animate.css/animate.min.css' %}"
+      rel="stylesheet"
+    />
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+    <link
+      href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    {% include './partials/header.html' %}
+    <!-- End Header -->}
+
+    <main id="main">
+
+        <!-- ======= Our Portfolio Section ======= -->
+        <section class="breadcrumbs">
+          <div class="container">
+    
+            <div class="d-flex justify-content-between align-items-center">
+              <h2>POSYANDU Details</h2>
+              <ol>
+                <li><a href="{% url 'beranda' %}">Beranda</a></li>
+                <li>POSYANDU Details</li>
+              </ol>
+            </div>
+    
+          </div>
+        </section><!-- End Our Portfolio Section -->
+    
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+          <div class="container">
+    
+            <div class="row gy-4">
+    
+              <div class="col-lg-8">
+                <div class="portfolio-details-slider swiper">
+                  <div class="swiper-wrapper align-items-center">
+    
+                    <div class="swiper-slide">
+                      <img src="https://assets.ayobandung.com/crop/0x0:0x0/750x500/webp/photo/2022/02/12/2681286688.jpg" alt="">
+                    </div>
+    
+                    <div class="swiper-slide">
+                      <img src="https://ayosehat.kemkes.go.id/imagex/content/0833c392foto2.png" alt="">
+                    </div>
+    
+                    <div class="swiper-slide">
+                      <img src="https://assets.kompasiana.com/items/album/2022/04/13/img-20220404-wa0046-6256d81b3794d12b3f7fbd52.jpg?t=o&v=400" alt="">
+                    </div>
+    
+                    <div class="swiper-slide">
+                      <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/radarmadura/2020/08/dinkes-perbolehkan-posyandu-beroperasi_m_207849.jpg" alt="">
+                    </div>
+    
+                    <div class="swiper-slide">
+                        <img src="https://i0.wp.com/maduranewsmedia.com/wp-content/uploads/2022/10/PhotoGrid_Plus_1666872420838.jpg?fit=1200%2C657&ssl=1" alt="">
+                    </div>
+    
+                  </div>
+                  <div class="swiper-pagination"></div>
+                </div>
+              </div>
+    
+              <div class="col-lg-4">
+                <div class="portfolio-info">
+                  <h3>Struktur Lembaga</h3>
+                  <ul>
+                    <li><strong>Ketua</strong>: Hernawati</li>
+                    <li><strong>Sekretaris</strong>: Wina Pramuka</li>
+                    <li><strong>Bendahara</strong>: Anastasia</li>
+                    <li><strong>Anggota</strong>: Sri Asosiasi & Ayu</a></li>
+                  </ul>
+                </div>
+                <div class="portfolio-description">
+                  <h2>Deskripsi</h2>
+                  <p>
+                    Ada beberapa kegiatan yang dilakukan oleh kader Posyandu Candigati Jember, yaitu :
+                    <ul>
+                        <li>1. Pendaftaran posyandu bayi, balita dan ibu hamil</li>
+                        <li>2. Menimbang dan memgisi buku KKS</li>
+                        <li>3. Mengukur tinggi badan</li>
+                        <li>4. Tensi darah untuk ibu hamil</li>
+                        <li>5. Pemeriksaan kesehatan oleh ibu bidan</li>
+                        <li>6. Pemberian obat untuk bayi yg akan imunisasi</li>
+                        <li>7. Pemberian obat tambah darah untuk ibu hamil</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+    
+            </div>
+    
+          </div>
+        </section><!-- End Portfolio Details Section -->
+    
+      </main><!-- End #main -->
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    {% include './partials/footer.html' %}
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/purecounter/purecounter.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  </body>
+</html>
