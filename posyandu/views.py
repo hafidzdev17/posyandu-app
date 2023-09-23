@@ -13,29 +13,113 @@ from django.contrib.auth.models import User
 from .decorators import tolakhalaman_ini
 from django.contrib.auth.decorators import login_required
 from dal import autocomplete
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
+from django.contrib.auth.models import User
+from io import BytesIO
+from xhtml2pdf import pisa
+from datetime import datetime  # Import modul datetime
+from django.utils.dateformat import DateFormat
+from django.core.exceptions import ValidationError
+from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 
-class SiswaAutocomplete(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
-        # Don't forget to filter out results depending on the visitor !
-        if not self.request.user.is_authenticated:
-            return Siswa.objects.none()
+def is_admin(user):
+    return user.petugas.roles == 'Admin' if user.petugas else False
 
-        qs = Siswa.objects.all()
+def is_bidan(user):
+    return user.petugas.roles == 'Bidan' if user.petugas else False
 
-        if self.q:
-            qs = qs.filter(nama__istartswith=self.q)
+@login_required
+@user_passes_test(is_bidan, login_url='login')
+def generate_pdf(request):
+    # Mengambil data pengguna yang sedang masuk
+    current_user = request.user
 
-        return qs
+    try:
+        petugas = Petugas.objects.get(user=current_user)
+        print(f"Nama Petugas: {petugas.nama_petugas}")
+        print(f"Email: {petugas.email}")
+        print(f"Status: {petugas.status}")
+        print(f"No Telpon: {petugas.no_telpon}")
+    except Petugas.DoesNotExist:
+        print("Data Petugas tidak ditemukan.")
 
-# @ijinkan_pengguna(yang_diizinkan=['admin']) 
-# @login_required(login_url='login')
-def export_xls(request):
-    pln = PembayaranResource()
-    dataset = pln.export()
-    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
-    response['Content-Disposition'] = 'attachment; filename=pelangaran.xls'
-    return response
+    # Mendapatkan tanggal saat ini dan mengonversinya ke format yang diinginkan
+    current_date = datetime.now()
+    formatted_date = DateFormat(current_date).format("j F Y")
+
+    # Mengambil data petugas yang terkait dengan pengguna yang sedang login
+    try:
+        petugas = Petugas.objects.get(user=current_user)
+    except Petugas.DoesNotExist:
+        petugas = None
+
+    # Mengambil data siswa atau data lain yang ingin dicetak
+    siswa = User.objects.filter(id=current_user.id)
+
+    # Mengambil template HTML
+    template = get_template('data/pdf_report.html')
+
+    tglmulai = request.GET.get('tglmulai', '')
+    tglakhir = request.GET.get('tglakhir', '')
+
+    # Lakukan validasi dan konversi tanggal
+    if not tglmulai or not tglakhir:
+        # Jika salah satu atau kedua tanggal tidak ada maka dapat menentukan nilai default
+        # atau mengambil seluruh data, sesuai dengan kebutuhan
+        tglmulai = '1900-01-01'  # Tanggal default awal
+        tglakhir = '2100-12-31'  # Tanggal default akhir
+    
+    # ...
+
+    # Mendapatkan nilai filter indikator dari permintaan GET
+    indikator = request.GET.get('indikator', '')
+
+    # Setelah validasi berhasil maka dapat melanjutkan dengan menggunakan tanggal dan indikator dalam filter
+    anak = Anak.objects.filter(tanggal_operasi__range=(tglmulai, tglakhir)).order_by('-id')
+
+    # Jika indikator tidak kosong, tambahkan filter indikator ke query
+    if indikator and indikator != 'Semua':
+        anak = anak.filter(indikator=indikator)
+
+        # Mengatur nilai filter berdasarkan filter indikator
+    if indikator == 'Iya':
+        filter_value = 'Stunting'
+    elif indikator == 'Tidak':
+        filter_value = 'Tidak Stunting'
+    else:
+        filter_value = 'Stunting Dan Tidak Stunting'  # Nilai default jika tidak ada filter indikator
+
+    # Mengisi konteks template dengan data dan tanggal
+    context = {
+        'siswa': anak,
+        'current_date': formatted_date,
+        'petugas': petugas,
+        'indikator': filter_value
+    }
+
+    html = template.render(context)
+
+    # Menginisialisasi objek PDF
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="user_report.pdf"'
+
+    # Menentukan ukuran halaman Letter (8.5 x 11 inch)
+    pdf = pisa.CreatePDF(
+        BytesIO(html.encode("UTF-8")),
+        response,
+        encoding='utf-8',
+        link_callback=lambda uri, _: fetch_resources(uri) if uri.startswith('/') else uri
+    )
+    pdf.use_full_page = True
+
+    if not pdf.err:
+        return response
+
+    return HttpResponse('Terjadi kesalahan saat membuat PDF')
+
 
 # views halaman depan
 def index(request):
@@ -230,8 +314,10 @@ def delete_anak(request, pk):
     }
     return render(request, 'data/anak_delete.html', context)
 
-@login_required
 # petugas
+
+@login_required
+@user_passes_test(is_admin, login_url='login')
 def petugas(request):
     data = Petugas.objects.order_by('-id')
     context ={
@@ -242,6 +328,7 @@ def petugas(request):
     return render(request, 'data/petugas.html', context)
 
 @login_required
+@user_passes_test(is_admin, login_url='login')
 def create_petugas(request):
     form = PetugasForm()
     petugas = PetugasForm(request.POST)
@@ -250,13 +337,14 @@ def create_petugas(request):
         password1 = request.POST.get('password')
         password2 = request.POST.get('password2')
 
-        if User.objects.filter(username = username).first():
+        if User.objects.filter(username=username).first():
             messages.success(request, 'Username sudah ada.')
             return redirect('create_petugas')
 
         if password1 != password2:
             messages.success(request, 'Password Tidak sama')
             return redirect('create_petugas')
+
         # user
         user = User.objects.create_user(username=username)
         user.set_password(password1)
@@ -264,22 +352,23 @@ def create_petugas(request):
         user.save()
 
         # Petugas
-        createPetugas = petugas.save()
-        createPetugas.user = user
+        createPetugas = petugas.save(commit=False)
+        createPetugas.user = user  # Mengaitkan objek Petugas dengan pengguna yang sedang login
         createPetugas.save()
         messages.success(request, 'admin berhasil ditambahkan.')
-        
+
         return redirect('petugas')
 
-    context ={
-        "menu" : 'Input Admin',
-        "page" : 'Halaman Admin',
-        "form" : form
-        
+    context = {
+        "menu": 'Input Admin',
+        "page": 'Halaman Admin',
+        "form": form
     }
     return render(request, 'data/petugas_form.html', context)
 
+
 @login_required
+@user_passes_test(is_admin, login_url='login')
 def delete_petugas(request, pk):
     delete_petugas = Petugas.objects.get(id=pk)
     if request.method == 'POST':
@@ -294,15 +383,24 @@ def delete_petugas(request, pk):
     return render(request, 'data/petugas_delete.html', context)
 
 @login_required
-
+@user_passes_test(is_bidan, login_url='login')
 def laporan(request):
     pembayaran = Anak.objects.order_by('-id')
     filterpembayaran = PembayaranFilter(request.GET, queryset=pembayaran)
     filter_pel = filterpembayaran.qs
+
+    # Mendapatkan nilai filter indikator dari permintaan GET
+    indikator = request.GET.get('indikator', '')
+
     context = {
-        'menu' : 'laporan',
-        'page' : 'Halaman Laporan',
-        'filter_pln' : filterpembayaran,
-        'siswa' : filter_pel,
+        'menu': 'laporan',
+        'page': 'Halaman Laporan',
+        'filter_pln': filterpembayaran,
+        'siswa': filter_pel,
+        'filter_indikator': indikator,
     }
-    return render(request, 'data/formlaporan.html', context)    
+
+    return render(request, 'data/formlaporan.html', context)
+
+
+

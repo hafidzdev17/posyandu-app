@@ -11,10 +11,12 @@ class KelasForm(ModelForm):
         widgets = {
             'nama_kelas': forms.TextInput(attrs={'class': 'form-select'}),
             'status_kelas': forms.RadioSelect(attrs={'class': 'form-check-input'}),
+            'petugas': forms.TextInput(attrs={'class': 'form-select'}),
         }
         labels = {
             'nama_kelas' : 'Nama Posyandu',
             'status_kelas': 'Status',
+            'petugas': 'Nama Petugas'
         }
 
 class AnakForm(ModelForm):
@@ -54,6 +56,7 @@ class PetugasForm(ModelForm):
         exclude = ['user']
         widgets = {
             'status': forms.RadioSelect(attrs={'class': 'form-check-input'}),
+            'roles': forms.RadioSelect(attrs={'class': 'form-check-input'}),
         }
         labels = {
             'nama_petugas' : 'Nama Admin',

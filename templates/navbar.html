@@ -14,18 +14,22 @@
           </a>
         </h5>
       </li>
-      <li>
-        <h5>
-          <a
-            class="nav-link {% if menu == 'petugas' %} active {% endif %}"
-            href="{% url 'petugas' %}"
-            aria-expanded="false"
-          >
-            <i class="fa-solid fa-user-tie"></i>
-            <span class="nav-text">Data Admin</span>
-          </a>
-        </h5>
-      </li>
+      {% if request.user.is_authenticated %}
+      {% if request.user.petugas.roles == 'Admin' %}
+        <li>
+          <h5>
+            <a
+              class="nav-link {% if menu == 'petugas' %} active {% endif %}"
+              href="{% url 'petugas' %}"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-user-tie"></i>
+              <span class="nav-text">Data Admin</span>
+            </a>
+          </h5>
+        </li>
+      {% endif %}
+    {% endif %}    
       <li>
         <h5>
           <a
@@ -51,6 +55,8 @@
         </h5>
       </li>
 
+      {% if request.user.is_authenticated %}
+      {% if request.user.petugas.roles == 'Bidan' %}
       <li>
         <h5>
           <a
@@ -63,6 +69,10 @@
           </a>
         </h5>
       </li>
+      {% endif %}
+    {% endif %}    
+
+    
     </ul>
   </div>
 </div>

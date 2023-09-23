@@ -2,8 +2,6 @@ from django.urls import path
 from .import views
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import SiswaAutocomplete
-
 urlpatterns = [
     path('account/login/', views.loginPage, name='login'),
     path('logout/', views.logoutPage, name='logout'),
@@ -34,6 +32,8 @@ urlpatterns = [
     path('dashboard/delete_admin/<str:pk>', views.delete_petugas, name='delete_petugas'),
 
     path('dashboard/laporan/', views.laporan, name='laporan'),
+    path('generate_pdf/', views.generate_pdf, name='generate_pdf'),
+    
 
     
 ]

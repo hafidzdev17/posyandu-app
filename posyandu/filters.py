@@ -1,5 +1,5 @@
 import django_filters
-from django_filters import DateFilter, CharFilter
+from django_filters import DateFilter, CharFilter, ChoiceFilter
 from .models import *
 
 class KelasFilter(django_filters.FilterSet):
@@ -19,6 +19,8 @@ class SiswaFilter(django_filters.FilterSet):
 class PembayaranFilter(django_filters.FilterSet):
     tglmulai = DateFilter(field_name="tanggal_operasi", lookup_expr='gte')
     tglakhir = DateFilter(field_name="tanggal_operasi", lookup_expr='lte')
+    indikator = ChoiceFilter(field_name='indikator', choices=Anak.INDIKATOR)
+
 
     class Meta:
         model = Anak

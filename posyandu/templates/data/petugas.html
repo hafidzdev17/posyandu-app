@@ -17,6 +17,15 @@
                         <div class="card-title">
                             <a href="{% url 'create_petugas' %}" type="button" class="float-right btn btn-rounded btn-success text-white fa-fa fa-plus"> Tambah Admin</a>
                         </div>
+
+                        {% if messages %}
+                        {%for pesan in messages %}
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                            </button> {{ pesan }}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
                       
                         <div class="table-responsive">
                             <table id="data-tabel" class="table">
@@ -27,6 +36,7 @@
                                         <th>Nama Admin</th>
                                         <th>No Telepon</th>
                                         <th>Status</th>
+                                        <th>Roles</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
@@ -38,6 +48,7 @@
                                             <td>{{ pgn.nama_petugas }}</td>
                                             <td>{{ pgn.no_telpon }}</td>
                                             <td>{{ pgn.status }}</td>
+                                            <td>{{ pgn.roles }}</td>
                                             <td><a href="{% url 'delete_petugas' pgn.id %}" class="btn btn-danger btn-sm">Hapus</a></td>
                                         </tr>
                                 {% endfor %}

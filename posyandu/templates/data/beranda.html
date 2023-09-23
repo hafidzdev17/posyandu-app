@@ -3,7 +3,14 @@
   <div class="container-fluid">
 
     <div class="jumbotron bg-info text-white">
-      <h2 class="display-4 text-white">Selamat datang, {{request.user.username }}</h2>
+      {% if request.user.is_authenticated %}
+      {% if request.user.petugas.roles == 'Bidan' %}
+      <h2 class="display-5 text-white">Selamat Datang Bidan {{request.user.petugas }}</h2>
+      {% endif %}
+      {% if request.user.petugas.roles == 'Admin' %}
+      <h2 class="display-5 text-white">Selamat Datang Admin {{request.user.petugas }}</h2>
+      {% endif %}
+    {% endif %}    
       <p class="lead"> Sistem Informasi Stunting Kelurahan Candigati Jember.</p>
       <a href="{% url 'index' %}" target="_blank">
         <button class="btn btn-primary">

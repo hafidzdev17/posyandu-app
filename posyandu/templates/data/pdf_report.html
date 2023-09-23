@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+   
+</head>
+<body>
+    <div class="container">
+        <h1>Laporan Data Anak <b>{{ indikator }}</b></h1>
+        <p>Nama Bidan: <b>{{ petugas }}</b></p>
+        <p>Tanggal di print: <b>{{ current_date }}</b></p>
+
+        <table class="styled-table table-bordered table-striped" style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
+            <thead>
+                <tr>
+                    <th style="width: 5%; ">No</th>
+                    <th style="width: 15%; ">Nama</th>
+                    <th style="width: 10%; ">TTL</th>
+                    <th style="width: 12%; ">Jenis Kelamin</th>
+                    <th style="width: 10%; ">Berat Badan</th>
+                    <th style="width: 10%; ">Tinggi Badan</th>
+                    <th style="width: 10%; ">Tanggal Operasi</th>
+                    <th style="width: 10%; ">Indikator</th>
+                    <th style="width: 10%; ">Status</th>
+                    <th style="width: 15%; ">Posyandu</th>
+                    <th style="width: 15%; ">Petugas</th>
+                  </tr>
+            </thead>
+            <tbody>
+                {% for siswa in siswa %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ siswa.nama }}</td>
+                  <td>{{ siswa.ttl }}</td>
+                  <td>{% if siswa.jenis_kelamin == 'L' %}Laki-Laki{% else %}Perempuan{% endif %}</td>
+                  <td>{{ siswa.berat_badan }}&nbsp;kg</td>
+                  <td>{{ siswa.tinggi_badan }}&nbsp;cm</td>
+                  <td>{{ siswa.tanggal_operasi }}</td>
+                  <td>{{ siswa.indikator }}</td>
+                  <td>{{ siswa.status }}</td>
+                  <td>{{ siswa.posyandu }}</td>
+                  <td>{{ siswa.posyandu.petugas }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        
+    </div>
+</body>
+</html>
+
+<style>
+    /* Reset beberapa default browser CSS */
+body, h1, h2, h3, p, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Pengaturan Dasar */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 3px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 13px;
+
+}
+
+/* Gaya untuk tabel dengan border */
+.table-bordered {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #dee2e6; /* Warna border */
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid #dee2e6; /* Warna border */
+     /* Jarak antara isi dengan border */
+}
+
+/* Gaya untuk tabel dengan background strip */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.05); /* Warna latar belakang strip */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa; /* Warna latar belakang sel genap */
+}
+
+
+/* Tabel Bergaya */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.styled-table th,
+.styled-table td {
+    /* padding: 5px 5px; */
+    text-align: left;
+    font-size: 13px;
+}
+
+.styled-table th {
+    background-color: #5ea700;
+    color: #fff;
+}
+
+.styled-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Tambahkan CSS tambahan sesuai kebutuhan */
+
+</style>

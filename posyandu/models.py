@@ -12,6 +12,7 @@ class Kelas(models.Model):
 
     nama_kelas = models.CharField(max_length=10)
     status_kelas = models.CharField(max_length=8, choices=STATUS_CHOICES, default='Aktif')
+    petugas = models.CharField(max_length=200, blank=True, null=False) 
     
     def __str__(self):
         return self.nama_kelas
@@ -61,11 +62,17 @@ class Petugas(models.Model):
         ('Nonaktif', 'Nonaktif'),
     )
 
+    ROLES = (
+        ('Admin', 'Admin'),
+        ('Bidan', 'Bidan'),
+    )
+
     user = models.OneToOneField(User, blank =True, null=True, on_delete = models.CASCADE)
     nama_petugas = models.CharField(max_length=200, blank=True, null=False)
     email = models.CharField(max_length=100,blank=True, unique = True, null=False)
     status = models.CharField(max_length=8, choices=STATUS_CHOICES, default='Aktif')
     no_telpon = models.CharField(max_length=200, blank=True,  unique = True, null=False)
+    roles = models.CharField(max_length=8, null=True, choices=ROLES, default='Admin')
 
     def __str__(self):
         return self.nama_petugas

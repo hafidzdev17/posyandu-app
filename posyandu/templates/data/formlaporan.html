@@ -10,18 +10,33 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Cetak Laporan</h4>
-                        <form action="" method="">
+                        
+
+                        <form action="" method="GET"> <!-- Ubah method POST menjadi GET -->
                             <!-- {% csrf_token %} -->
                             <div class="form-group">
                                 <label>From Date</label>
-                                {{ filter_pln.form.tglmulai | add_class:"form-control" |attr:"type:date"}}
+                                <input type="date" class="form-control" name="tglmulai" value="{{ filter_pln.form.tglmulai.value|default:'' }}">
                             </div>
                             <div class="form-group">
                                 <label>To Date</label>
-                                {{ filter_pln.form.tglakhir | add_class:"form-control" |attr:"type:date"}}
+                                <input type="date" class="form-control" name="tglakhir" value="{{ filter_pln.form.tglakhir.value|default:'' }}">
                             </div>
+
+                            <div class="form-group">
+                                <label>Indikator</label>
+                                <select name="indikator" class="form-control">
+                                    <option value="">Semua</option>
+                                    <option value="Iya" {% if filter_indikator == 'Iya' %}selected{% endif %}>Iya</option>
+                                    <option value="Tidak" {% if filter_indikator == 'Tidak' %}selected{% endif %}>Tidak</option>
+                                </select>
+                            </div>
+
+                            
                             <button type="submit" class="btn btn-primary m-t-20">Lihat</button>
                         </form>
+                        <!-- ... -->
+                        
                     </div>
                 </div>
             </div>
@@ -31,7 +46,13 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Data Anak</h4>
-                            {% comment %} <a id="btn" href="{% url 'export_xls'  %}" type="button" class="btn btn-success">Export excel</a> {% endcomment %}
+                   
+
+
+                        <a id="btn" href="{% url 'generate_pdf' %}?tglmulai={{ filter_pln.form.tglmulai.value|default:'' }}&tglakhir={{ filter_pln.form.tglakhir.value|default:'' }}&indikator={{ filter_indikator }}" type="button" class="btn btn-success">Export PDF</a>
+
+
+
                         <div class="table-responsive">
                             <table id="pelanggaran_table" class="table table-striped table-bordered zero-configuration">
                                 <thead>
@@ -41,11 +62,12 @@
                                         <th>TTL</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Berat Badan</th>
-                                        <th>Tinggi Badan</th>
+                                        <th >Tinggi Badan</th>
                                         <th>Tanggal Operasi</th>
                                         <th>Indikator</th>
                                         <th>Status</th>
                                         <th>Posyandu</th>
+                                        <th>Petugas</th>
                                       </tr>
                                 </thead>
                                 <tbody>
@@ -55,12 +77,13 @@
                                       <td>{{ siswa.nama }}</td>
                                       <td>{{ siswa.ttl }}</td>
                                       <td>{% if siswa.jenis_kelamin == 'L' %}Laki-Laki{% else %}Perempuan{% endif %}</td>
-                                      <td>{{ siswa.berat_badan }}</td>
-                                      <td>{{ siswa.tinggi_badan }}</td>
+                                      <td>{{ siswa.berat_badan }}&nbsp;kg</td>
+                                      <td>{{ siswa.tinggi_badan }}&nbsp;cm</td>
                                       <td>{{ siswa.tanggal_operasi }}</td>
                                       <td>{{ siswa.indikator }}</td>
                                       <td>{{ siswa.status }}</td>
                                       <td>{{ siswa.posyandu }}</td>
+                                      <td>{{ siswa.posyandu.petugas }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
